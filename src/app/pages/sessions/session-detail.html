@@ -1,0 +1,59 @@
+<section class="page">
+  <a class="back-link" routerLink="/sessions">Back to sessions</a>
+  @if (loading()) {
+    <mat-progress-bar mode="indeterminate" aria-label="Loading session" />
+  }
+  @if (error()) {
+    <p class="notice">{{ error() }}</p>
+  }
+  @if (session(); as row) {
+    <h1>{{ row.name }}</h1>
+    @if (row.orphan) {
+      <p class="notice">These boxes have no session document. Deleting them removes the boxes only.</p>
+    }
+    <div class="stats">
+      <div class="stat"><span>Berry</span><strong>{{ berryLabel(row.berry) }}</strong></div>
+      <div class="stat"><span>Supervisor</span><strong>{{ row.supervisor || '—' }}</strong></div>
+      <div class="stat"><span>Preset</span><strong class="numbers">{{ kgLabel(row.defaultWeight) }}</strong></div>
+      <div class="stat"><span>Boxes</span><strong class="numbers">{{ row.boxCount }}</strong></div>
+      <div class="stat"><span>Kilograms</span><strong class="numbers">{{ kgLabel(row.totalKg) }}</strong></div>
+      <div class="stat"><span>Sent</span><strong>{{ helsinki(row.syncedAt) }}</strong></div>
+    </div>
+    @if (row.boxes.length === 0) {
+      <p class="muted">This session has no boxes.</p>
+    } @else {
+      <div class="session-table-wrap panel">
+        <table mat-table [dataSource]="row.boxes" class="session-table">
+          <ng-container matColumnDef="picker">
+            <th mat-header-cell *matHeaderCellDef>Picker</th>
+            <td mat-cell *matCellDef="let box" class="numbers">{{ box.pickerId }}</td>
+          </ng-container>
+          <ng-container matColumnDef="kilograms">
+            <th mat-header-cell *matHeaderCellDef>Kilograms</th>
+            <td mat-cell *matCellDef="let box" class="numbers">{{ kgLabel(box.amount) }}</td>
+          </ng-container>
+          <ng-container matColumnDef="time">
+            <th mat-header-cell *matHeaderCellDef>Time</th>
+            <td mat-cell *matCellDef="let box">{{ helsinki(box.date) }}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let box; columns: columns"></tr>
+        </table>
+      </div>
+      <div class="session-cards">
+        @for (box of row.boxes; track box.id) {
+          <article class="session-card">
+            <strong class="numbers">Picker {{ box.pickerId }}</strong>
+            <span class="numbers">{{ kgLabel(box.amount) }}</span>
+            <span>{{ helsinki(box.date) }}</span>
+          </article>
+        }
+      </div>
+    }
+    <div class="actions detail-actions">
+      <button matButton="filled" class="danger" type="button" [disabled]="deleting()" (click)="confirmDelete()">
+        Delete session
+      </button>
+    </div>
+  }
+</section>

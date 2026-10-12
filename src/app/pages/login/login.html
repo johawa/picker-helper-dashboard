@@ -1,0 +1,20 @@
+<section class="page login-page">
+  <div class="panel login-panel">
+    <h1>Sign in</h1>
+    @if (!configured) {
+      <p>Auth0 is not configured yet. Copy <span class="numbers">.env.example</span> to <span class="numbers">.env</span>, then set the tenant domain, client id, API audience, and the email allowlist.</p>
+      <p class="muted">Create an Auth0 Single Page Application. Set the callback, logout, and web origin to <span class="numbers">http://localhost:4300</span>.</p>
+    } @else {
+      <p>Sign in with Auth0 to see the picking sessions.</p>
+      @if (!audienceReady) {
+        <p class="notice">Set AUTH0_AUDIENCE so the API can check the access token.</p>
+      }
+      @if (error | async; as problem) {
+        <p class="notice">{{ problem.message }}</p>
+      }
+      <div class="actions">
+        <button matButton="filled" type="button" (click)="login()">Sign in</button>
+      </div>
+    }
+  </div>
+</section>

@@ -1,0 +1,20 @@
+.lead {
+  margin: 0 0 1.25rem;
+  color: #64748b;
+  font-size: 1.05rem;
+}
+
+.widget {
+  max-width: 28rem;
+  padding: 1.1rem 1.15rem;
+  background: #ffffff;
+  border: 1px solid #e6ebf2;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.widget h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+}

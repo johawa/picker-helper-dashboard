@@ -1,0 +1,81 @@
+/*
+  Stratify-style controls, taken from the project-management dashboard reference:
+  white surfaces, a pale page, hairline borders, soft shadows, and a blue accent.
+  Use these tokens for fields and overlays. Do not invent a second palette.
+*/
+
+:root {
+  --stratify-surface: #ffffff;
+  --stratify-border: #e6ebf2;
+  --stratify-text: #1e293b;
+  --stratify-muted: #64748b;
+  --stratify-accent: #3b6cff;
+  --stratify-accent-soft: #e8eeff;
+  --stratify-radius: 16px;
+  --stratify-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.range.mat-mdc-form-field {
+  --mat-form-field-outlined-outline-color: var(--stratify-border);
+  --mat-form-field-outlined-hover-outline-color: #cfd8e6;
+  --mat-form-field-outlined-focus-outline-color: var(--stratify-accent);
+  --mat-form-field-outlined-input-text-color: var(--stratify-text);
+  --mat-form-field-outlined-label-text-color: var(--stratify-muted);
+  --mat-form-field-outlined-hover-label-text-color: var(--stratify-text);
+  --mat-form-field-outlined-focus-label-text-color: var(--stratify-accent);
+  --mdc-outlined-text-field-container-shape: var(--stratify-radius);
+  --mat-form-field-container-text-size: 0.95rem;
+  font-family: Inter, sans-serif;
+}
+
+.range .mdc-text-field--outlined {
+  background: var(--stratify-surface);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.range .mdc-text-field--outlined .mdc-notched-outline__leading {
+  border-radius: 16px 0 0 16px;
+}
+
+.range .mdc-text-field--outlined .mdc-notched-outline__trailing {
+  border-radius: 0 16px 16px 0;
+}
+
+.range .mat-datepicker-toggle {
+  color: var(--stratify-muted);
+}
+
+.cdk-overlay-pane.mat-datepicker-popup .mat-datepicker-content {
+  border: 1px solid var(--stratify-border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--stratify-surface);
+  box-shadow: var(--stratify-shadow);
+  color: var(--stratify-text);
+  font-family: Inter, sans-serif;
+  --mat-datepicker-calendar-container-background-color: var(--stratify-surface);
+  --mat-datepicker-calendar-container-text-color: var(--stratify-text);
+  --mat-datepicker-calendar-date-selected-state-background-color: var(--stratify-accent);
+  --mat-datepicker-calendar-date-selected-state-text-color: #ffffff;
+  --mat-datepicker-calendar-date-in-range-state-background-color: var(--stratify-accent-soft);
+  --mat-datepicker-calendar-date-today-outline-color: var(--stratify-accent);
+  --mat-datepicker-calendar-header-text-color: var(--stratify-text);
+}
+
+.mat-datepicker-content .mat-calendar-body-label,
+.mat-datepicker-content .mat-calendar-table-header th {
+  color: var(--stratify-muted);
+}
+
+.mat-datepicker-content .mat-calendar-body-cell-content {
+  border-radius: 999px;
+}
+
+.mat-datepicker-content .mat-calendar-body-in-range::before {
+  background: var(--stratify-accent-soft);
+}
+
+.mat-datepicker-content .mat-calendar-body-selected {
+  background: var(--stratify-accent);
+  color: #ffffff;
+}

@@ -1,0 +1,83 @@
+<div class="shell">
+  <aside class="sidenav">
+    <a class="brand" routerLink="/">Picker</a>
+    <nav aria-label="Main">
+      <ul class="nav-list">
+        <li>
+          <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linejoin="round"
+                d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6H10v6H5a1 1 0 0 1-1-1z"
+              />
+            </svg>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a class="nav-link" routerLink="/sessions" routerLinkActive="active">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                d="M5 7h14M5 12h14M5 17h14"
+              />
+            </svg>
+            Sessions
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div class="sidenav-foot">
+      @if (configured) {
+        @if (authenticated | async; as signedIn) {
+          @if (signedIn) {
+            <p class="who">{{ (user | async)?.email }}</p>
+          }
+        }
+      }
+      <button
+        class="nav-link settings-button"
+        type="button"
+        [class.active]="settingsActive()"
+        [matMenuTriggerFor]="userMenu"
+        aria-label="User settings"
+      >
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4Z"
+          />
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linejoin="round"
+            d="M19.4 13.5a7.7 7.7 0 0 0 .1-1.5 7.7 7.7 0 0 0-.1-1.5l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-2.6-1.5L14 2h-4l-.4 2.5a7.6 7.6 0 0 0-2.6 1.5l-2.4-1-2 3.4 2 1.6a7.7 7.7 0 0 0 0 3l-2 1.6 2 3.4 2.4-1a7.6 7.6 0 0 0 2.6 1.5L10 22h4l.4-2.5a7.6 7.6 0 0 0 2.6-1.5l2.4 1 2-3.4-2-1.6Z"
+          />
+        </svg>
+        Settings
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <a mat-menu-item routerLink="/settings">Account</a>
+        @if (configured) {
+          @if (authenticated | async) {
+            <button mat-menu-item type="button" (click)="logout()">Log out</button>
+          }
+        }
+      </mat-menu>
+    </div>
+  </aside>
+  <main>
+    <router-outlet />
+  </main>
+</div>

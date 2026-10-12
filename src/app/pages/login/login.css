@@ -1,0 +1,11 @@
+.login-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.login-panel {
+  width: min(36rem, 100%);
+}

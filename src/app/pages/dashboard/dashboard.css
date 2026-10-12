@@ -1,0 +1,55 @@
+:host {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+:host .page {
+  flex: 1;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.lead {
+  margin: 0 0 1.25rem;
+  color: #64748b;
+  font-size: 1.05rem;
+}
+
+.widget-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.widget {
+  min-height: 0;
+  padding: 1.1rem 1.15rem;
+  background: #ffffff;
+  border: 1px solid #e6ebf2;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+}
+
+.widget h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+@media (max-width: 800px) {
+  .widget-grid {
+    grid-template-columns: 1fr;
+    overflow: auto;
+  }
+}
